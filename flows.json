@@ -1,0 +1,24 @@
+[
+    {
+        "id": "3f2e87e76bda510b",
+        "type": "function",
+        "z": "79afa442356c01d2",
+        "g": "617b368a7a18b57e",
+        "name": "Windy.com construction",
+        "func": "const apiKey = \"YOUR API KEY.eyJjaSI6MTQ1MTUxMjksImlhdCI6MTc0MjM5MDE4NH0.uZlNx_XZBbHUbQth8R9SWrv5OSG-3VN9KpKkNcnBQdE\";\n\nlet stationId = \"YOUR STATION ID\";\nlet name = \"YOUR NAME OF STATION\";\nlet latitude = \"YOUR LATITUDE\";  //Format: 44.538968\nlet longitude = \"YOUR LONGITUDE\";  //Format: 44.538968\nlet elevation = \"YOUR ELEVATION IN METERS\"; //For Example \"675\"\nlet tempheight = \"HEIGHT OF TEMPERATURE SENSOR IN METERS\"; //For Example \"4\"\nlet windheight = \"HEIGHT OF WIND SENSOR IN METERS\"; //For Example \"4\"\n\nlet time = new Date().toISOString();\nlet temp = parseFloat(global.get(\"Temperature\"));\nlet rh = parseFloat(global.get(\"Humidity\"));\nlet dewpoint = parseFloat(global.get(\"Dewpoint\"));\nlet winddir = parseFloat(global.get(\"WindDir\"));\nlet wind = parseFloat(global.get(\"WindAvg\"));\nlet gust = parseFloat(global.get(\"WindMax\"));\nlet mbar = parseFloat(global.get(\"RADC_P\"));\nlet precip = parseFloat(global.get(\"hourlyRain\"));\n\n\nvar url = `https://stations.windy.com/pws/update/${apiKey}?time=${time}&name=${name}&latitude=${latitude}&longitude=${longitude}&elevation=${elevation}&tempheight=${tempheight}&windheight=${windheight}&winddir=${winddir}&wind=${wind}&gust=${gust}&temp=${temp}&precip=${precip}&mbar=${mbar}&dewpoint=${dewpoint}&rh=${rh}`;\n\n/*\nhttps://stations.windy.com/pws/update/XXX-API-KEY-XXX?winddir=230&windspeedmph=12&windgustmph=12&tempf=70&rainin=0&baromin=29.1&dewptf=68.2&humidity=90\n*/\n\n\n\n// Restituisci il messaggio con l'URL costruito\nmsg.url = url;\n\n\n// Debug: Visualizza l'URL costruito e i dati filtrati\n//node.warn(\"Generated URL: \" + msg.url);\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 990,
+        "y": 700,
+        "wires": [
+            [
+                "fd13bb411fe7ebbb",
+                "362b91cec086a5a5"
+            ]
+        ]
+    }
+]
